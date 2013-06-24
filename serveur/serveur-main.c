@@ -19,13 +19,15 @@
 #define MAX 512
 pthread_mutex_t mutex_etat;
 int eteindre;
+liste * debut_nourriture = NULL;
+
 int main(void)
 {
   int sockfd, servlen;
   pthread_t th_serveur, th_tamagochi;
   void * ret;
   struct sockaddr_un serv_addr;
-  liste * debut_nourriture = NULL;
+
  
   /*                                     */
   /* CREATION ET CONFIGURATION DU SOCKET */      

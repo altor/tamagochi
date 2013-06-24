@@ -2,6 +2,11 @@
 #define GLOBAL_H
 
 #define MAX 512
+#define MAX_GOUT 10
+#define MIN_GOUT -10
+
+
+
 
 #include <pthread.h>
 #include <time.h>
@@ -11,8 +16,12 @@
 extern variable_etat* niv_faim;
 extern variable_etat* humeur;
 
+
+
 extern pthread_mutex_t mutex_etat;
 
-int eteindre;
+int eteindre, alive;
+
+
 
 #endif

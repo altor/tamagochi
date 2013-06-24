@@ -34,7 +34,7 @@ int recup_arguments(char arguments[MAX][12], char * chaine_env, int longueur);
 void * thread_serveur(void * arg)
 {
   socklen_t clilen;
-    int newsockfd;
+  int newsockfd;
   int sockfd = *(int*)arg;
   int retour = 1;
   struct sockaddr cli_addr;
@@ -45,10 +45,13 @@ void * thread_serveur(void * arg)
   debut_commande = liste_make();
   liste_init(debut_commande, NULL, 0);
   //ajout des composants
+  ajouter_commande(debut_commande, "creer", creer);
   ajouter_commande(debut_commande, "exit", sortir);
   ajouter_commande(debut_commande, "testarg", testarg);
   ajouter_commande(debut_commande, "halt", halt);
 
+  //initialisation des variable globales
+  alive = 0;
 
   srand(time(NULL));
 

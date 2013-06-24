@@ -6,5 +6,6 @@
 char* sortir(char * chaine_env, char arguments[MAX][12], int nb_arguments);
 char* halt(char * chaine_env, char arguments[MAX][12], int nb_arguments);
 char * testarg(char * chaine_env, char arguments[MAX][12], int nb_arguments);
+char* creer(char * chaine_env, char arguments[MAX][12], int nb_arguments);
 
 #endif

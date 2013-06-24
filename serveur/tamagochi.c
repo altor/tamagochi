@@ -21,10 +21,6 @@ void * thread_tamagochi(void * arg)
   time_t temps1, temps2;
   liste * debut_fonctionalite = NULL;
 
-  //test
-  int alive = 1;
-  //test
-
   //creation liste
   debut_fonctionalite = liste_make();
   liste_init(debut_fonctionalite, NULL, 0);
