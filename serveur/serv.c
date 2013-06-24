@@ -67,7 +67,6 @@ void * thread_serveur(void * arg)
     retour = serv_shell(newsockfd,debut_commande); //effectuer la requéte
     close(newsockfd);//fermeture du socket client
   }
-  printf("titi\n");
   return 0;
 }
 
@@ -77,7 +76,7 @@ void * thread_serveur(void * arg)
 //renvoi 2 si le client demande a arreter le serveur
 int serv_shell(int sockfd, liste * debut_commande)
 {
-  int retour = 1, n, nb_arguments;
+  int n, nb_arguments;
   char chaine_rcv[MAX], chaine_env[MAX], arguments[MAX][12];
   while(1){
   n = readline(sockfd, chaine_rcv, MAX); //lecture de la commande et stocakge de sa taille dans n
@@ -90,15 +89,15 @@ int serv_shell(int sockfd, liste * debut_commande)
 
   if(lancer_commande(debut_commande, arguments[0], chaine_env, arguments, nb_arguments) == 1)
     strcpy(chaine_env, "commande inconnue");
-  else if(!strcmp("halt", chaine_env))
+  else if(!strcmp("halt", chaine_env)){
     strcpy(chaine_env, "exit");
-
-  serv_chaine(sockfd, chaine_env, strlen(chaine_env));
-  if(!strcmp("exit", chaine_env)){
-    printf("%d\n", retour);
-    return retour;
+    serv_chaine(sockfd, chaine_env, strlen(chaine_env));
+    return 2;
   }
 
+  serv_chaine(sockfd, chaine_env, strlen(chaine_env));
+  if(!strcmp("exit", chaine_env))
+    return 1;
   }
 }
 
