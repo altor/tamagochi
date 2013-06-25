@@ -42,7 +42,7 @@ void ajouter_commande(liste * debut, char * nom, Pfonction fonction)
 
 }
 
-int lancer_commande(liste * debut, char * nom, char* arg1,char arg2[MAX][12], int arg3)
+int lancer_commande(liste * debut, char * nom, char* arg1,char arg2[MAX][12], int arg3, void * retour)
 {
   liste * courant = debut;
   Pfonction fonction = NULL;
@@ -57,17 +57,19 @@ int lancer_commande(liste * debut, char * nom, char* arg1,char arg2[MAX][12], in
     courant = liste_obtenir_suivant(courant);
   //si on arrive a la fin de la liste, on verifie si le dernier chainon contient la commande donné.
   if(liste_obtenir_suivant(courant) == NULL){
-    if(strcmp(commande_obtenir_nom(liste_obtenir_valeur(courant)), nom))
+    if(strcmp(commande_obtenir_nom(liste_obtenir_valeur(courant)), nom)){
+      retour = NULL;
       return 1;
+    }
     else{
       fonction = commande_obtenir_fonction(liste_obtenir_valeur(courant));
-      (*fonction)(arg1,arg2,arg3);
+      (*fonction)(arg1,arg2,arg3,retour);
       return 0;
     }
   }
   else{
     fonction = commande_obtenir_fonction(liste_obtenir_valeur(courant));
-    (*fonction)(arg1,arg2,arg3);
-   return 0;
+    (*fonction)(arg1,arg2,arg3,retour);
+    return 0;
   }
 }

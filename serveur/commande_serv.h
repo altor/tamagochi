@@ -3,9 +3,9 @@
 #ifndef COMMANDE_SERV_H
 #define COMMANDE_SERV_H
 
-char* sortir(char * chaine_env, char arguments[MAX][12], int nb_arguments);
-char* halt(char * chaine_env, char arguments[MAX][12], int nb_arguments);
-char * testarg(char * chaine_env, char arguments[MAX][12], int nb_arguments);
-char* creer(char * chaine_env, char arguments[MAX][12], int nb_arguments);
+void sortir(char * chaine_env, char arguments[MAX][12], int nb_arguments, void * retour);
+void halt(char * chaine_env, char arguments[MAX][12], int nb_arguments, void * retour);
+void  testarg(char * chaine_env, char arguments[MAX][12], int nb_arguments, void * retour);
+void creer(char * chaine_env, char arguments[MAX][12], int nb_arguments, void * retour);
 
 #endif

@@ -78,6 +78,7 @@ int serv_shell(int sockfd, liste * debut_commande)
 {
   int n, nb_arguments;
   char chaine_rcv[MAX], chaine_env[MAX], arguments[MAX][12];
+
   while(1){
   n = readline(sockfd, chaine_rcv, MAX); //lecture de la commande et stocakge de sa taille dans n
   if(n == 0)
@@ -87,14 +88,14 @@ int serv_shell(int sockfd, liste * debut_commande)
   
   nb_arguments = recup_arguments(arguments, chaine_rcv, strlen(chaine_rcv)); //on sépare la commande principale de ses arguments
 
-  if(lancer_commande(debut_commande, arguments[0], chaine_env, arguments, nb_arguments) == 1)
+  if(lancer_commande(debut_commande, arguments[0], chaine_env, arguments, nb_arguments,NULL) == 1)
     strcpy(chaine_env, "commande inconnue");
   else if(!strcmp("halt", chaine_env)){
     strcpy(chaine_env, "exit");
     serv_chaine(sockfd, chaine_env, strlen(chaine_env));
     return 2;
   }
-
+  
   serv_chaine(sockfd, chaine_env, strlen(chaine_env));
   if(!strcmp("exit", chaine_env))
     return 1;
