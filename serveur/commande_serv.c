@@ -7,6 +7,10 @@
 #include "../classe/nourriture.h"
 #include "../classe/commande.h"
 
+void init_carac(char * carac, int nb);
+
+
+
 void sortir(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
 {
   strcpy((char*)retour, "exit");
@@ -17,28 +21,6 @@ void halt(char arguments[MAX][12], int nb_arguments, void * retour, liste * list
 {
   strcpy((char*)retour, "halt");
 }
-
-void  testarg(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
-{
-  if(nb_arguments != 2)
-    strcpy((char*)retour, "nb arguments invalides");
-  
-  else{
-    if(lancer_commande(liste_arg, arguments[1], NULL, 0, retour) == 1)
-      strcpy((char *)retour, "argument invalide");
-  }
-}
-
-void testarg_a(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
-{
-  strcpy((char*)retour, "aaaaaaaa");
-}
-
-void testarg_b(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
-{
-  strcpy((char*)retour, "bbbbbbbbb");
-}
-
 
 void creer(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
 {
@@ -62,3 +44,55 @@ void creer(char arguments[MAX][12], int nb_arguments, void * retour, liste * lis
   }
 
 }
+
+void etat(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
+{
+  if(nb_arguments != 2)
+    strcpy((char*)retour, "nb arguments invalides");
+  else if(!alive)
+    strcpy((char*)retour, "pas de tamagochi en vie");
+  else{
+    if(lancer_commande(liste_arg, arguments[1], NULL, 0, retour) == 1)
+      strcpy((char *)retour, "argument invalide");
+  }
+}
+void etat_faim(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
+{
+  init_carac(retour, variable_etat_obtenir_valeur(niv_faim));
+}
+
+void etat_humeur(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
+{
+  init_carac(retour, variable_etat_obtenir_valeur(humeur));
+}
+
+
+
+
+// transforme un nombre en chaine de caractere
+void init_carac(char * carac, int nb)
+{
+  int u,d,c;
+  int signe = 0;
+  if(nb < 0){
+    signe = 1;
+    nb *= (-1);
+  }
+  
+  u = nb % 10;
+  d = ((nb % 100) - u)/10;
+  c = ((nb % 1000) - (10 * d) - u)/100;
+  if(signe == 0){
+    carac[0] = c + 48;
+    carac[1] = d + 48;
+    carac[2] = u + 48;
+    carac[3] = 0;
+  }
+  else{
+    carac[0] = '-';
+    carac[1] = c + 48;
+    carac[2] = d + 48;
+    carac[3] = u + 48;
+    carac[4] = 0;
+  }
+} 

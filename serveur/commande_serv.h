@@ -7,7 +7,10 @@ void sortir(char arguments[MAX][12], int nb_arguments, void * retour, liste * li
 void halt(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg);
 void  testarg(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg);
 void creer(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg);
-void testarg_a(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg);
-void testarg_b(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg);
+void etat(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg);
+void etat_faim(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg);
+void etat_humeur(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg);
+
+
 
 #endif

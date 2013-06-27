@@ -39,7 +39,7 @@ void * thread_serveur(void * arg)
   int retour = 1;
   struct sockaddr cli_addr;
   liste * debut_commande = NULL;
-  liste * arg_testarg = NULL;
+    liste * arg_etat = NULL;
 
   //CREATION COMMANDES//
   //creation de la liste
@@ -48,13 +48,13 @@ void * thread_serveur(void * arg)
   //ajout des composants
   ajouter_commande(debut_commande, "creer", creer, NULL);
   ajouter_commande(debut_commande, "exit", sortir, NULL);
+  //commande etat et ses argument
+  arg_etat = liste_make();
+  liste_init(arg_etat, NULL, 0);
+  ajouter_commande(arg_etat, "faim", etat_faim, NULL);
+  ajouter_commande(arg_etat, "humeur", etat_humeur, NULL);
+  ajouter_commande(debut_commande, "etat", etat, arg_etat);
   
-
-  arg_testarg = liste_make();
-  liste_init(arg_testarg, NULL, 0);
-  ajouter_commande(arg_testarg, "a", testarg_a, NULL);
-  ajouter_commande(arg_testarg, "b", testarg_b, NULL);
-  ajouter_commande(debut_commande, "testarg", testarg, arg_testarg);
   ajouter_commande(debut_commande, "halt", halt, NULL);
 
   //initialisation des variable globales
