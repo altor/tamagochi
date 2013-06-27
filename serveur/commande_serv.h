@@ -10,7 +10,7 @@ void creer(char arguments[MAX][12], int nb_arguments, void * retour, liste * lis
 void etat(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg);
 void etat_faim(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg);
 void etat_humeur(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg);
-
+void manger(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg);
 
 
 #endif

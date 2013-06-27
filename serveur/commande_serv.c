@@ -8,6 +8,7 @@
 #include "../classe/commande.h"
 
 void init_carac(char * carac, int nb);
+void manger_gout(char * chaine, int gout);
 
 
 
@@ -65,6 +66,60 @@ void etat_humeur(char arguments[MAX][12], int nb_arguments, void * retour, liste
 {
   init_carac(retour, variable_etat_obtenir_valeur(humeur));
 }
+
+void manger(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
+{
+  nourriture * aliment = NULL;
+  int gout;
+  if(alive){
+    if(nb_arguments != 2)
+      strcpy(retour, "nombre d'arguments invalides");
+    else{
+      aliment = chercher_nourriture(debut_nourriture, arguments[1]);
+      if(aliment == NULL)
+	strcpy(retour, "argument invalide");
+      else{
+	variable_etat_ajouter_valeur(niv_faim, nourriture_obtenir_nutriment(aliment));
+	gout = nourriture_obtenir_gout(aliment);
+	variable_etat_ajouter_valeur(humeur, gout);
+	manger_gout(retour, gout);
+      }
+    }
+  }
+  else
+    strcpy(retour, "pas de tamagochi en vie");
+
+}
+void manger_gout(char * chaine, int gout)
+{
+  if(gout > 8)
+    strcpy(chaine, ">8");
+  else if(gout > 6)
+    strcpy(chaine, ">6");
+  else if(gout > 4)
+    strcpy(chaine, ">4");
+  else if(gout > 2)
+    strcpy(chaine, ">2");
+  else if(gout > 0)
+    strcpy(chaine, ">0");
+  else if(gout > -2)
+    strcpy(chaine, ">-2");
+  else if(gout > -4)
+    strcpy(chaine, ">-4");
+  else if(gout > -6)
+    strcpy(chaine, ">-6");
+  else if(gout > -8)
+    strcpy(chaine, ">-8");
+  else if(gout > -10)
+    strcpy(chaine, ">-10");
+}
+
+
+
+
+
+
+
 
 
 

@@ -47,14 +47,15 @@ void * thread_serveur(void * arg)
   liste_init(debut_commande, NULL, 0);
   //ajout des composants
   ajouter_commande(debut_commande, "creer", creer, NULL);
-  ajouter_commande(debut_commande, "exit", sortir, NULL);
+  ajouter_commande(debut_commande, "manger", manger, NULL);
   //commande etat et ses argument
   arg_etat = liste_make();
   liste_init(arg_etat, NULL, 0);
   ajouter_commande(arg_etat, "faim", etat_faim, NULL);
   ajouter_commande(arg_etat, "humeur", etat_humeur, NULL);
   ajouter_commande(debut_commande, "etat", etat, arg_etat);
-  
+
+  ajouter_commande(debut_commande, "exit", sortir, NULL);  
   ajouter_commande(debut_commande, "halt", halt, NULL);
 
   //initialisation des variable globales
