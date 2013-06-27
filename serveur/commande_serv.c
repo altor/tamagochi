@@ -5,42 +5,47 @@
 #include "../classe/variable_etat.h"
 #include "../classe/liste.h"
 #include "../classe/nourriture.h"
+#include "../classe/commande.h"
 
-
-void sortir(char * chaine_env, char arguments[MAX][12], int nb_arguments, void * retour)
+void sortir(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
 {
-  strcpy(chaine_env, "exit");
-  *(char**)retour = chaine_env;
+  strcpy((char*)retour, "exit");
 }
 
-void halt(char * chaine_env, char arguments[MAX][12], int nb_arguments, void * retour)
+
+void halt(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
 {
-  strcpy(chaine_env, "halt");
-  *(char**)retour = chaine_env;
+  strcpy((char*)retour, "halt");
 }
 
-void testarg(char * chaine_env, char arguments[MAX][12], int nb_arguments, void * retour)
+void  testarg(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
 {
   if(nb_arguments != 2)
-    strcpy(chaine_env, "nb arguments invalides");
+    strcpy((char*)retour, "nb arguments invalides");
+  
   else{
-    if(!strcmp(arguments[1], "a"))
-      strcpy(chaine_env, "aaaaaaaaaa");
-    else if(!strcmp(arguments[1], "b"))
-      strcpy(chaine_env, "bbbbbbbbb");
-    else
-      strcpy(chaine_env, "argument invalide");
+    if(lancer_commande(liste_arg, arguments[1], NULL, 0, retour) == 1)
+      strcpy((char *)retour, "argument invalide");
   }
-  *(char**)retour = chaine_env;
+}
+
+void testarg_a(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
+{
+  strcpy((char*)retour, "aaaaaaaa");
+}
+
+void testarg_b(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
+{
+  strcpy((char*)retour, "bbbbbbbbb");
 }
 
 
-void creer(char * chaine_env, char arguments[MAX][12], int nb_arguments, void * retour)
+void creer(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
 {
   liste * courant = debut_nourriture;
   
   if(alive != 0){
-    strcpy(chaine_env, "tamagochi deja vivant");
+    strcpy((char*)retour, "tamagochi deja vivant");
   }
   else{
     //initialisation des varables d'états
@@ -53,8 +58,7 @@ void creer(char * chaine_env, char arguments[MAX][12], int nb_arguments, void * 
       courant = liste_obtenir_suivant(courant);
       nourriture_modifier_gout(liste_obtenir_valeur(courant), (rand() % (MAX_GOUT - MIN_GOUT + 1)) + MIN_GOUT);
     }
-    strcpy(chaine_env, "tamagochi creé");
+    strcpy((char*)retour, "tamagochi creé");
   }
 
-  *(char**)retour = chaine_env;
 }

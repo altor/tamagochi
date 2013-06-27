@@ -6,6 +6,7 @@
 struct commande{
   char nom[512];
   Pfonction fonction;
+  liste * liste_arg;
 };
 
 commande * commande_make()
@@ -18,10 +19,11 @@ void commande_delete(commande * obj)
   free(obj);
 }
 
-void commande_init(commande * obj, char * nom, Pfonction fonction)
+void commande_init(commande * obj, char * nom, Pfonction fonction, liste * liste_arg)
 {
   strcpy(obj->nom, nom);
   obj->fonction = fonction;
+  obj->liste_arg = liste_arg;
 }
 
 char * commande_obtenir_nom(commande * obj)
@@ -34,15 +36,20 @@ Pfonction commande_obtenir_fonction(commande * obj)
   return obj->fonction;
 }
 
-void ajouter_commande(liste * debut, char * nom, Pfonction fonction)
+extern liste * commande_obtenir_arg(commande * obj)
+{
+  return obj->liste_arg;
+}
+
+void ajouter_commande(liste * debut, char * nom, Pfonction fonction, liste * liste_arg)
 {
   commande * commande_cree = commande_make();
-  commande_init(commande_cree, nom, fonction);
+  commande_init(commande_cree, nom, fonction, liste_arg);
   ajouter_chainon(debut, commande_cree);
 
 }
 
-int lancer_commande(liste * debut, char * nom, char* arg1,char arg2[MAX][12], int arg3, void * retour)
+int lancer_commande(liste * debut, char * nom, char arg2[MAX][12], int arg3, void * retour)
 {
   liste * courant = debut;
   Pfonction fonction = NULL;
@@ -63,13 +70,13 @@ int lancer_commande(liste * debut, char * nom, char* arg1,char arg2[MAX][12], in
     }
     else{
       fonction = commande_obtenir_fonction(liste_obtenir_valeur(courant));
-      (*fonction)(arg1,arg2,arg3,retour);
+      (*fonction)(arg2, arg3, retour, commande_obtenir_arg(liste_obtenir_valeur(courant)));
       return 0;
     }
   }
   else{
     fonction = commande_obtenir_fonction(liste_obtenir_valeur(courant));
-    (*fonction)(arg1,arg2,arg3,retour);
+    (*fonction)(arg2, arg3, retour, commande_obtenir_arg(liste_obtenir_valeur(courant)));
     return 0;
   }
 }

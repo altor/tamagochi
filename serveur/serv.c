@@ -39,16 +39,23 @@ void * thread_serveur(void * arg)
   int retour = 1;
   struct sockaddr cli_addr;
   liste * debut_commande = NULL;
+  liste * arg_testarg = NULL;
 
   //CREATION COMMANDES//
   //creation de la liste
   debut_commande = liste_make();
   liste_init(debut_commande, NULL, 0);
   //ajout des composants
-  ajouter_commande(debut_commande, "creer", creer);
-  ajouter_commande(debut_commande, "exit", sortir);
-  ajouter_commande(debut_commande, "testarg", testarg);
-  ajouter_commande(debut_commande, "halt", halt);
+  ajouter_commande(debut_commande, "creer", creer, NULL);
+  ajouter_commande(debut_commande, "exit", sortir, NULL);
+  
+
+  arg_testarg = liste_make();
+  liste_init(arg_testarg, NULL, 0);
+  ajouter_commande(arg_testarg, "a", testarg_a, NULL);
+  ajouter_commande(arg_testarg, "b", testarg_b, NULL);
+  ajouter_commande(debut_commande, "testarg", testarg, arg_testarg);
+  ajouter_commande(debut_commande, "halt", halt, NULL);
 
   //initialisation des variable globales
   alive = 0;
@@ -88,7 +95,7 @@ int serv_shell(int sockfd, liste * debut_commande)
   
   nb_arguments = recup_arguments(arguments, chaine_rcv, strlen(chaine_rcv)); //on sépare la commande principale de ses arguments
 
-  if(lancer_commande(debut_commande, arguments[0], chaine_env, arguments, nb_arguments,NULL) == 1)
+  if(lancer_commande(debut_commande, arguments[0], arguments, nb_arguments,chaine_env) == 1)
     strcpy(chaine_env, "commande inconnue");
   else if(!strcmp("halt", chaine_env)){
     strcpy(chaine_env, "exit");
