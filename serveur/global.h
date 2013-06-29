@@ -5,7 +5,7 @@
 #define MAX_GOUT 10
 #define MIN_GOUT -10
 
-
+#define POID_DEPART 5
 
 
 #include <pthread.h>
@@ -13,8 +13,9 @@
 #include "../classe/variable_etat.h"
 #include "../classe/liste.h"
 
-extern variable_etat* niv_faim;
-extern variable_etat* humeur;
+int poid, poid_dejection, verrou_ingurgitation, verrou_digestion;
+extern variable_etat* niv_faim, *humeur, *nourriture_ingurgite ;
+
 
 
 

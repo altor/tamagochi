@@ -20,6 +20,9 @@
 pthread_mutex_t mutex_etat;
 int eteindre;
 liste * debut_nourriture = NULL;
+variable_etat* niv_faim = NULL;
+variable_etat* humeur = NULL;
+variable_etat* nourriture_ingurgite = NULL;
 
 int main(void)
 {
@@ -53,6 +56,7 @@ int main(void)
   //CREATION DES VARIABLES ETAT//
   niv_faim = variable_etat_make();
   humeur = variable_etat_make();
+  nourriture_ingurgite = variable_etat_make();
 
   //CREATION DE LA NOURITURE//
   //creation de la liste

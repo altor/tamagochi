@@ -10,6 +10,7 @@
 #include <unistd.h>
 
 //fichiers locaux
+#include "etat.h"
 #include "global.h"
 #include "../utilitaire.h"
 #include "../classe/variable_etat.h"
@@ -18,12 +19,7 @@
 #include "../classe/commande.h"
 
 
-//definition des variables global
-variable_etat* niv_faim = NULL;
-variable_etat* humeur = NULL;
-
-
-
+int poid, poid_dejection, verou_ingurgitation, verrou_digestion;
 //fonctions utilisé par la fonction thread serveur
 int serv_shell(int sockfd, liste * debut_commande);
 int serv_chaine(int sockfd, char * chaine,int taille);
@@ -52,6 +48,9 @@ void * thread_serveur(void * arg)
   arg_etat = liste_make();
   liste_init(arg_etat, NULL, 0);
   ajouter_commande(arg_etat, "faim", etat_faim, NULL);
+  ajouter_commande(arg_etat, "n_i", etat_nourriture_ingurgite, NULL);
+  ajouter_commande(arg_etat, "poid", etat_poid, NULL);
+  ajouter_commande(arg_etat, "Poid_D", etat_poid_degection, NULL);
   ajouter_commande(arg_etat, "humeur", etat_humeur, NULL);
   ajouter_commande(debut_commande, "etat", etat, arg_etat);
 
@@ -150,7 +149,3 @@ int recup_arguments(char arguments[MAX][12], char * chaine_env, int longueur)
     arguments[i][0] = 0;
   return nb_arguments + 1;
 }
-
-
-
-

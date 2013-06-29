@@ -2,7 +2,7 @@ CCFLAGS = -pthread -Wall -o
 
 
 OBJ_CLASSE = variable_etat.o commande.o nourriture.o liste.o fonctionalite.o
-OBJ_SERV = serveur-main.o serv.o tamagochi.o commande_serv.o 
+OBJ_SERV = serveur-main.o serv.o tamagochi.o commande_serv.o etat.o
 OBJ_SERV_MAIN = $(OBJ_SERV) $(OBJ_CLASSE) utilitaire.o
 
 OBJ_CLI = client-main.o str-cli.o
@@ -62,3 +62,6 @@ fonctionalite.o : ./classe/fonctionalite.h ./classe/liste.h ./classe/fonctionali
 
 liste.o: ./classe/liste.h ./classe/liste.c
 	gcc -Wall -o liste.o -c ./classe/liste.c
+
+etat.o: ./serveur/etat.h ./serveur/global.h ./classe/nourriture.h ./classe/variable_etat.h ./serveur/etat.c
+	gcc -Wall -o etat.o -c ./serveur/etat.c
