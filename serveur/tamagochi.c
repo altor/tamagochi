@@ -8,7 +8,9 @@
 
 #define CYCLE 1 //duré d'un cycle de mise à jour en seconde
 #define DURE_JOUR 24 //nombre de cycle en une journé
-#define DURE_FAIM (DURE_JOUR / 12) //nombre de cycle avant mise a jour de la faim
+#define DURE_PRODUCTION (DURE_JOUR / 4) //duré d'un cycle de production en cycle (ingurgistation, digestion , evacuation)
+#define DURE_DIGESTION ((DURE_PRODUCTION /3)//nombre de cycle avant le déclanchement de la digestion
+#define DURE_EVACUATION (DURE_PRODUCTION - DURE_DIGESTION)//nombre de cycle avant le déclanchement de la digestion
 #define DURE_HUMEUR (DURE_JOUR / 6) //nombre de cycle avant la mise a jour d'humeur
 #define DURE_POID  DURE_JOUR// nombre de cycle avant la mise a jour de poid
 
