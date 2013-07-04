@@ -2,17 +2,12 @@
 
 #include <time.h>
 
+#include "fonctionalite_tamagochi.h"
 #include "../classe/fonctionalite.h"
 #include "../classe/liste.h"
 #include "global.h"
 
-#define CYCLE 1 //duré d'un cycle de mise à jour en seconde
-#define DURE_JOUR 24 //nombre de cycle en une journé
-#define DURE_PRODUCTION (DURE_JOUR / 4) //duré d'un cycle de production en cycle (ingurgistation, digestion , evacuation)
-#define DURE_DIGESTION ((DURE_PRODUCTION /3)//nombre de cycle avant le déclanchement de la digestion
-#define DURE_EVACUATION (DURE_PRODUCTION - DURE_DIGESTION)//nombre de cycle avant le déclanchement de la digestion
-#define DURE_HUMEUR (DURE_JOUR / 6) //nombre de cycle avant la mise a jour d'humeur
-#define DURE_POID  DURE_JOUR// nombre de cycle avant la mise a jour de poid
+
 
 
 
@@ -27,8 +22,9 @@ void * thread_tamagochi(void * arg)
   debut_fonctionalite = liste_make();
   liste_init(debut_fonctionalite, NULL, 0);
   //ajout fonctionalite
-
-
+  //  ajouter_fonctionalite(debut_fonctionalite, 1, compteur_cycle);
+  ajouter_fonctionalite(debut_fonctionalite, 1, gestion_prod);
+  
 
   nb_cycle = 0;
   temps2 = time(NULL);
