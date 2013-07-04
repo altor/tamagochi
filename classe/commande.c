@@ -49,7 +49,7 @@ void ajouter_commande(liste * debut, char * nom, Pfonction fonction, liste * lis
 
 }
 
-int lancer_commande(liste * debut, char * nom, char arg2[MAX][12], int arg3, void * retour)
+int lancer_commande(liste * debut, char * nom, char arg2[12][MAX], int arg3, void * retour)
 {
   liste * courant = debut;
   Pfonction fonction = NULL;

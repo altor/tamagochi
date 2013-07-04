@@ -7,7 +7,7 @@
 #include "../serveur/global.h"
 
 typedef struct commande commande;
-typedef void (*Pfonction) (char arg[MAX][12], int, void *, liste *); 
+typedef void (*Pfonction) (char arg[12][MAX], int, void *, liste *); 
 
 extern liste * debut_commande;
 
@@ -20,6 +20,6 @@ extern  Pfonction commande_obtenir_fonction(commande * obj);
 extern liste * commande_obtenir_arg(commande * obj);
 //fonction permetant de manipuler la liste des commandes
 void ajouter_commande(liste * debut, char * nom, Pfonction fonction, liste * liste_arg);
-int lancer_commande(liste * debut, char * nom, char arg2[MAX][12], int arg3, void * retour);
+int lancer_commande(liste * debut, char * nom, char arg2[12][MAX], int arg3, void * retour);
 
 #endif

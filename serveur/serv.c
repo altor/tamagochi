@@ -23,7 +23,7 @@ int poid, poid_dejection, verou_ingurgitation, verrou_digestion;
 //fonctions utilisé par la fonction thread serveur
 int serv_shell(int sockfd, liste * debut_commande);
 int serv_chaine(int sockfd, char * chaine,int taille);
-int recup_arguments(char arguments[MAX][12], char * chaine_env, int longueur);
+int recup_arguments(char arguments[12][MAX], char * chaine_env, int longueur);
 
 
 //fonction lancé par le thread serveur
@@ -48,9 +48,9 @@ void * thread_serveur(void * arg)
   arg_etat = liste_make();
   liste_init(arg_etat, NULL, 0);
   ajouter_commande(arg_etat, "faim", etat_faim, NULL);
-  ajouter_commande(arg_etat, "n_i", etat_nourriture_ingurgite, NULL);
+  ajouter_commande(arg_etat, "niv_faim", etat_nourriture_ingurgite, NULL);
   ajouter_commande(arg_etat, "poid", etat_poid, NULL);
-  ajouter_commande(arg_etat, "Poid_D", etat_poid_degection, NULL);
+  ajouter_commande(arg_etat, "poid_dejection", etat_poid_degection, NULL);
   ajouter_commande(arg_etat, "humeur", etat_humeur, NULL);
   ajouter_commande(debut_commande, "etat", etat, arg_etat);
 
@@ -84,7 +84,7 @@ void * thread_serveur(void * arg)
 int serv_shell(int sockfd, liste * debut_commande)
 {
   int n, nb_arguments;
-  char chaine_rcv[MAX], chaine_env[MAX], arguments[MAX][12];
+  char chaine_rcv[MAX], chaine_env[MAX], arguments[12][MAX];
 
   while(1){
   n = readline(sockfd, chaine_rcv, MAX); //lecture de la commande et stocakge de sa taille dans n
@@ -125,7 +125,7 @@ int serv_chaine(int sockfd, char * chaine,int taille)
 
 
 //separe les arguments de la commande reçu dans un tableau de chaine de caractére(le premier éléments est la commande reçu) et renvoi le nombre d'arguments
-int recup_arguments(char arguments[MAX][12], char * chaine_env, int longueur)
+int recup_arguments(char arguments[12][MAX], char * chaine_env, int longueur)
 {
   int i;
   int nb_arguments = 0;

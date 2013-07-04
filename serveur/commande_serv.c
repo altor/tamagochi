@@ -11,18 +11,18 @@
 void manger_gout(char * chaine, int gout);
 
 
-void sortir(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
+void sortir(char arguments[12][MAX], int nb_arguments, void * retour, liste * liste_arg)
 {
   strcpy((char*)retour, "exit");
 }
 
 
-void halt(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
+void halt(char arguments[12][MAX], int nb_arguments, void * retour, liste * liste_arg)
 {
   strcpy((char*)retour, "halt");
 }
 
-void creer(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
+void creer(char arguments[12][MAX], int nb_arguments, void * retour, liste * liste_arg)
 {
   liste * courant = debut_nourriture;
   
@@ -50,7 +50,7 @@ void creer(char arguments[MAX][12], int nb_arguments, void * retour, liste * lis
 }
 
 
-void manger(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
+void manger(char arguments[12][MAX], int nb_arguments, void * retour, liste * liste_arg)
 {
   nourriture * aliment = NULL;
   int gout;

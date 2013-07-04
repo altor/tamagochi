@@ -11,7 +11,7 @@
 void etat_nourriture(char * nom, char * retour);
 void init_carac(char * carac, int nb);
 
-void etat(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
+void etat(char arguments[12][MAX], int nb_arguments, void * retour, liste * liste_arg)
 {
   if(nb_arguments != 2)
     strcpy((char*)retour, "nb arguments invalides");
@@ -26,27 +26,27 @@ void etat(char arguments[MAX][12], int nb_arguments, void * retour, liste * list
     }
   }
 }
-void etat_faim(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
+void etat_faim(char arguments[12][MAX], int nb_arguments, void * retour, liste * liste_arg)
 {
   init_carac(retour, variable_etat_obtenir_valeur(niv_faim));
 }
 
-void etat_humeur(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
+void etat_humeur(char arguments[12][MAX], int nb_arguments, void * retour, liste * liste_arg)
 {
   init_carac(retour, variable_etat_obtenir_valeur(humeur));
 }
 
-void etat_nourriture_ingurgite(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
+void etat_nourriture_ingurgite(char arguments[12][MAX], int nb_arguments, void * retour, liste * liste_arg)
 {
   init_carac(retour, variable_etat_obtenir_valeur(nourriture_ingurgite));
 }
 
-void etat_poid(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
+void etat_poid(char arguments[12][MAX], int nb_arguments, void * retour, liste * liste_arg)
 {
   init_carac(retour, poid);
 }
 
-void etat_poid_degection(char arguments[MAX][12], int nb_arguments, void * retour, liste * liste_arg)
+void etat_poid_degection(char arguments[12][MAX], int nb_arguments, void * retour, liste * liste_arg)
 {
   init_carac(retour, poid_dejection);
 }
