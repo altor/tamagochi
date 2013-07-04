@@ -39,7 +39,7 @@ int coulis;
   else if(cycle > 0)
     cycle = 0;
   //dés qu'un nombre de cycle sufisant est passé on lance la digestion
-  if(cycle >= (DURE_DIGESTION+2) )
+  if(cycle >= (DURE_DIGESTION) )
       {
 	coulis = variable_etat_obtenir_valeur(nourriture_ingurgite);
 	//phase normal : on termine la phase d'ingurgitation, le poid et le poid des dejection augmente en fonction de la nourriture ingurgité, l'estomac est vidé et on prévient que la phase de digestion est en cours.
