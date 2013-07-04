@@ -48,7 +48,7 @@ void * thread_serveur(void * arg)
   arg_etat = liste_make();
   liste_init(arg_etat, NULL, 0);
   ajouter_commande(arg_etat, "faim", etat_faim, NULL);
-  ajouter_commande(arg_etat, "niv_faim", etat_nourriture_ingurgite, NULL);
+  ajouter_commande(arg_etat, "n_i", etat_nourriture_ingurgite, NULL);
   ajouter_commande(arg_etat, "poid", etat_poid, NULL);
   ajouter_commande(arg_etat, "poid_dejection", etat_poid_degection, NULL);
   ajouter_commande(arg_etat, "humeur", etat_humeur, NULL);

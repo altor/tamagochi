@@ -50,7 +50,7 @@ void creer(char arguments[12][MAX], int nb_arguments, void * retour, liste * lis
 }
 
 
-void manger(char arguments[12][MAX], int nb_arguments, void * retour, liste * liste_arg)
+/*void manger(char arguments[12][MAX], int nb_arguments, void * retour, liste * liste_arg)
 {
   nourriture * aliment = NULL;
   int gout;
@@ -72,7 +72,50 @@ void manger(char arguments[12][MAX], int nb_arguments, void * retour, liste * li
   else
     strcpy(retour, "pas de tamagochi en vie");
 
+}*/
+
+
+
+void manger(char arguments[12][MAX], int nb_arguments, void * retour, liste * liste_arg){
+  nourriture * aliment = NULL;
+  int nutriment;
+  
+  if(alive){
+    if(nb_arguments != 2)
+      strcpy(retour, "nombre d'arguments invalides");
+    else{
+      aliment = chercher_nourriture(debut_nourriture, arguments[1]);
+      if(aliment == NULL)
+	strcpy(retour, "argument invalide");
+      else{
+	nutriment = nourriture_obtenir_nutriment(aliment);
+	//phase normal, le tamagochi ingurgite la nourriture la  nouriture est stocké dans l'estomac et l'humeur du tamagochi évolue. On indique qu'une phase de digestion commence
+	if((variable_etat_obtenir_valeur(nourriture_ingurgite) + nutriment) < CAPACITE_ESTOMAC){
+	  variable_etat_ajouter_valeur(nourriture_ingurgite, nutriment);
+	  variable_etat_actualiser_temps(nourriture_ingurgite);
+	  variable_etat_ajouter_valeur(humeur, nourriture_obtenir_gout(aliment));
+	  variable_etat_actualiser_temps(humeur);
+	  verrou_ingurgitation = 1;
+	  strcpy(retour, "j'ai mangé");
+	}
+	//phase vomi, l'estomac se vide, un sentiment de faim se crée, on indique que la phase de digestion est terminé
+	else{
+	  variable_etat_ajouter_valeur(humeur,-10);
+	  variable_etat_initialiser(nourriture_ingurgite, 0);
+	  variable_etat_ajouter_valeur(niv_faim, -1);
+	  verrou_ingurgitation = 0;
+	  strcpy(retour, "j'ai vomi");
+	}
+      }
+    }
+  }
+  else
+    strcpy(retour, "pas de tamagochi en vie");
+
+  
 }
+
+
 void manger_gout(char * chaine, int gout)
 {
   if(gout > 8)

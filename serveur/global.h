@@ -6,7 +6,7 @@
 #define MIN_GOUT -10
 
 #define POID_DEPART 5
-
+#define CAPACITE_ESTOMAC 20
 
 #include <pthread.h>
 #include <time.h>
