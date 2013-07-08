@@ -52,6 +52,7 @@ void * thread_serveur(void * arg)
   ajouter_commande(arg_etat, "poid", etat_poid, NULL);
   ajouter_commande(arg_etat, "poid_dejection", etat_poid_degection, NULL);
   ajouter_commande(arg_etat, "humeur", etat_humeur, NULL);
+  ajouter_commande(arg_etat, "proprete", etat_proprete, NULL);
   ajouter_commande(debut_commande, "etat", etat, arg_etat);
 
   ajouter_commande(debut_commande, "exit", sortir, NULL);  

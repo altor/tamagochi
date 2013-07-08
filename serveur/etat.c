@@ -31,6 +31,11 @@ void etat_faim(char arguments[12][MAX], int nb_arguments, void * retour, liste *
   init_carac(retour, variable_etat_obtenir_valeur(niv_faim));
 }
 
+void etat_proprete(char arguments[12][MAX], int nb_arguments, void * retour, liste * liste_arg)
+{
+  init_carac(retour, proprete);
+}
+
 void etat_humeur(char arguments[12][MAX], int nb_arguments, void * retour, liste * liste_arg)
 {
   init_carac(retour, variable_etat_obtenir_valeur(humeur));
