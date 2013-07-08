@@ -3,5 +3,8 @@
 
 void compteur_cycle(void);
 void gestion_prod(void);
+void gestion_poid(void);
+void gestion_faim(void);
+
 
 #endif

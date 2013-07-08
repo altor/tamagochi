@@ -19,7 +19,7 @@
 #include "../classe/commande.h"
 
 
-int poid, poid_dejection, verou_ingurgitation, verrou_digestion;
+int poid, poid_dejection, verou_ingurgitation, verrou_digestion, proprete;
 //fonctions utilisé par la fonction thread serveur
 int serv_shell(int sockfd, liste * debut_commande);
 int serv_chaine(int sockfd, char * chaine,int taille);

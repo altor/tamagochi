@@ -32,11 +32,12 @@ void creer(char arguments[12][MAX], int nb_arguments, void * retour, liste * lis
   else{
     //initialisation des varables d'états
     alive = 1;
-    variable_etat_initialiser(niv_faim, 50);
+    variable_etat_initialiser(niv_faim, 4);
     variable_etat_initialiser(humeur, 50);
     variable_etat_initialiser(nourriture_ingurgite, 0);
     poid = POID_DEPART;
     poid_dejection = 0;
+    proprete = 4;
     verrou_ingurgitation = 0;
     verrou_digestion = 0;
     //initialisation des gouts
@@ -64,16 +65,24 @@ void manger(char arguments[12][MAX], int nb_arguments, void * retour, liste * li
 	nutriment = nourriture_obtenir_nutriment(aliment);
 	//phase normal, le tamagochi ingurgite la nourriture la  nouriture est stocké dans l'estomac et l'humeur du tamagochi évolue. On indique qu'une phase d'ingurgitation commence
 	if((variable_etat_obtenir_valeur(nourriture_ingurgite) + nutriment) < CAPACITE_ESTOMAC){
+	  //	  printf("manger\n");
 	  variable_etat_ajouter_valeur(nourriture_ingurgite, nutriment);
 	  variable_etat_actualiser_temps(nourriture_ingurgite);
 	  variable_etat_ajouter_valeur(humeur, nourriture_obtenir_gout(aliment));
 	  variable_etat_actualiser_temps(humeur);
+
+	  if(nutriment > 4){
+	    if(variable_etat_obtenir_valeur(niv_faim) < 5){
+	      variable_etat_ajouter_valeur(niv_faim, 1);	  
+	      variable_etat_actualiser_temps(niv_faim);
+	    }
+	  }
 	  verrou_ingurgitation = 1;
 	  strcpy(retour, "j'ai mangé");
 	}
 	//phase vomi, l'estomac se vide, un sentiment de faim se crée, on indique que la phase d'ingurgitation est intéromput
 	else{
-	  printf("vomi\n");
+	  //	  printf("vomi\n");
 	  variable_etat_ajouter_valeur(humeur,-10);
 	  variable_etat_initialiser(nourriture_ingurgite, 0);
 	  variable_etat_ajouter_valeur(niv_faim, -1);
