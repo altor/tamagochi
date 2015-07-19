@@ -14,13 +14,13 @@ BIN = client_main serveur_main
 all: $(BIN)
 
 clean:
-	rm  $(OBJ_SERV_MAIN) $(OBJ_CLI_MAIN) $(BIN)
+	rm -f  $(OBJ_SERV_MAIN) $(OBJ_CLI_MAIN) $(BIN)
 
 clean_obj:
-	-rm $(OBJ_SERV_MAIN) $(OBJ_CLI_MAIN)
+	-rm -f $(OBJ_SERV_MAIN) $(OBJ_CLI_MAIN)
 
 clean_bin:
-	-rm $(BIN)
+	-rm -f $(BIN)
 
 client_main : $(OBJ_CLI_MAIN)
 	gcc -Wall -o client_main $(OBJ_CLI_MAIN)
