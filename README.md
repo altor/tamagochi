@@ -26,12 +26,12 @@ Chaque commande est à exécuter depuis la racine du projet :
 
 Listes des commandes acceptées par le tamagochi. Les commandes doivent être tapées selon la syntaxe suivante : `commande arg1 arg 2 arg3`.
 
-* creer :  crée un tamagochi et initialise ses goûts aléatoirement. 
+* `creer` :  crée un tamagochi et initialise ses goûts aléatoirement. 
 
-* etat arg : donne la valeur de l'argument demandé (faim, humeur, poids)
+* `etat arg` : donne la valeur de l'argument demandé (faim, humeur, poids)
 
-* halt : éteint le serveur
+* `halt` : éteint le serveur
 
-* exit : interrompt la connexion avec le serveur (le tamagochi reste actif et ses variables sont conservé)
+* `exit` : interrompt la connexion avec le serveur (le tamagochi reste actif et ses variables sont conservé)
 
-* manger arg : mange l'aliment arg et augmente le niveau de faim du tamagochi (tartiflette +6, kebab +5, pizza +4, pate +4, chocolat +1)
+* `manger arg` : mange l'aliment arg et augmente le niveau de faim du tamagochi (tartiflette +6, kebab +5, pizza +4, pate +4, chocolat +1)
