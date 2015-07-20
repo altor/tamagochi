@@ -1,5 +1,5 @@
-//declaration de la classe commande qui sert a stocker les commandes utilisé pour communiquer entre le serveur et le client.
-//declaration de la liste de stockage des commandes et des fonction qui lui sont associé.
+//déclaration de la classe commande qui sert à stocker les commandes utilisés pour communiquer entre le serveur et le client.
+//déclaration de la liste de stockage des commandes et des fonction qui lui sont associées.
 #ifndef COMMANDE_H
 #define COMMANDE_H
 
@@ -18,7 +18,7 @@ extern void commande_delete(commande * obj);
 extern char * commande_obtenir_nom(commande * obj);
 extern  Pfonction commande_obtenir_fonction(commande * obj);
 extern liste * commande_obtenir_arg(commande * obj);
-//fonction permetant de manipuler la liste des commandes
+//fonction permettant de manipuler la liste des commandes
 void ajouter_commande(liste * debut, char * nom, Pfonction fonction, liste * liste_arg);
 int lancer_commande(liste * debut, char * nom, char arg2[12][MAX], int arg3, void * retour);
 

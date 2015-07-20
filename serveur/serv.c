@@ -1,4 +1,4 @@
-//Ce fichier définie la fonction thread_serveur ainsi que les fonction qu'elle utilise
+//Ce fichier défini la fonction thread_serveur ainsi que les fonctions qu'elle utilise
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,13 +20,13 @@
 
 
 int poid, poid_dejection, verou_ingurgitation, verrou_digestion, proprete;
-//fonctions utilisé par la fonction thread serveur
+//fonctions utilisées par la fonction thread serveur
 int serv_shell(int sockfd, liste * debut_commande);
 int serv_chaine(int sockfd, char * chaine,int taille);
 int recup_arguments(char arguments[12][MAX], char * chaine_env, int longueur);
 
 
-//fonction lancé par le thread serveur
+//fonction lancées par le thread serveur
 void * thread_serveur(void * arg)
 {
   socklen_t clilen;
@@ -50,7 +50,7 @@ void * thread_serveur(void * arg)
   ajouter_commande(arg_etat, "faim", etat_faim, NULL);
   ajouter_commande(arg_etat, "n_i", etat_nourriture_ingurgite, NULL);
   ajouter_commande(arg_etat, "poid", etat_poid, NULL);
-  ajouter_commande(arg_etat, "poid_dejection", etat_poid_degection, NULL);
+  ajouter_commande(arg_etat, "poid_dejection", etat_poid_dejection, NULL);
   ajouter_commande(arg_etat, "humeur", etat_humeur, NULL);
   ajouter_commande(arg_etat, "proprete", etat_proprete, NULL);
   ajouter_commande(debut_commande, "etat", etat, arg_etat);
@@ -58,12 +58,12 @@ void * thread_serveur(void * arg)
   ajouter_commande(debut_commande, "exit", sortir, NULL);  
   ajouter_commande(debut_commande, "halt", halt, NULL);
 
-  //initialisation des variable globales
+  //initialisation des variables globales
   alive = 0;
 
   srand(time(NULL));
 
-  //lancement de la boucle de gestion des conection
+  //lancement de la boucle de gestion des connections
   
   while(retour != 2){
     clilen = sizeof(cli_addr);
@@ -72,7 +72,7 @@ void * thread_serveur(void * arg)
     if(newsockfd < 0)
       err_dump("serveur : erreur lors de l'appel d'accept");
     
-    retour = serv_shell(newsockfd,debut_commande); //effectuer la requéte
+    retour = serv_shell(newsockfd,debut_commande); //effectuer la requête
     close(newsockfd);//fermeture du socket client
   }
   return 0;
@@ -80,18 +80,18 @@ void * thread_serveur(void * arg)
 
 
 //fonction de gestion des commandes reçut par le serveur
-//renvoi 1 si le client demande a etre deconecter
-//renvoi 2 si le client demande a arreter le serveur
+//renvoi 1 si le client demande à être déconnecter
+//renvoi 2 si le client demande à arrêter le serveur
 int serv_shell(int sockfd, liste * debut_commande)
 {
   int n, nb_arguments;
   char chaine_rcv[MAX], chaine_env[MAX], arguments[12][MAX];
 
   while(1){
-  n = readline(sockfd, chaine_rcv, MAX); //lecture de la commande et stocakge de sa taille dans n
+  n = readline(sockfd, chaine_rcv, MAX); //lecture de la commande et stockage de sa taille dans n
   if(n == 0)
     return 0; 
-  else if(n < 0) //conection interomput avec le client
+  else if(n < 0) //connections interrompu avec le client
       err_dump("serveur_shell : erreur lors de l'appel de readline");
   
   nb_arguments = recup_arguments(arguments, chaine_rcv, strlen(chaine_rcv)); //on sépare la commande principale de ses arguments
@@ -125,7 +125,7 @@ int serv_chaine(int sockfd, char * chaine,int taille)
 }
 
 
-//separe les arguments de la commande reçu dans un tableau de chaine de caractére(le premier éléments est la commande reçu) et renvoi le nombre d'arguments
+//sépare les arguments de la commande reçu dans un tableau de chaîne de caractère(le premier éléments est la commande reçu) et renvoi le nombre d'arguments
 int recup_arguments(char arguments[12][MAX], char * chaine_env, int longueur)
 {
   int i;

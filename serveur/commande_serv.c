@@ -27,7 +27,7 @@ void creer(char arguments[12][MAX], int nb_arguments, void * retour, liste * lis
   liste * courant = debut_nourriture;
   
   if(alive != 0){
-    strcpy((char*)retour, "tamagochi deja vivant");
+    strcpy((char*)retour, "tamagochi déjà vivant");
   }
   else{
     //initialisation des varables d'états
@@ -45,7 +45,7 @@ void creer(char arguments[12][MAX], int nb_arguments, void * retour, liste * lis
       courant = liste_obtenir_suivant(courant);
       nourriture_modifier_gout(liste_obtenir_valeur(courant), (rand() % (MAX_GOUT - MIN_GOUT + 1)) + MIN_GOUT);
     }
-    strcpy((char*)retour, "tamagochi creé");
+    strcpy((char*)retour, "tamagochi créé");
   }
 
 }
@@ -63,9 +63,9 @@ void manger(char arguments[12][MAX], int nb_arguments, void * retour, liste * li
 	strcpy(retour, "argument invalide");
       else{
 	nutriment = nourriture_obtenir_nutriment(aliment);
-	//phase normal, le tamagochi ingurgite la nourriture la  nouriture est stocké dans l'estomac et l'humeur du tamagochi évolue. On indique qu'une phase d'ingurgitation commence
+	//phase normal, le tamagochi ingurgite la nourriture la nouriture est stockée dans l'estomac et l'humeur du tamagochi évolue. On indique qu'une phase d'ingurgitation commence
 	if((variable_etat_obtenir_valeur(nourriture_ingurgite) + nutriment) < CAPACITE_ESTOMAC){
-	  //	  printf("manger\n");
+
 	  variable_etat_ajouter_valeur(nourriture_ingurgite, nutriment);
 	  variable_etat_actualiser_temps(nourriture_ingurgite);
 	  variable_etat_ajouter_valeur(humeur, nourriture_obtenir_gout(aliment));
@@ -78,9 +78,9 @@ void manger(char arguments[12][MAX], int nb_arguments, void * retour, liste * li
 	  verrou_ingurgitation = 1;
 	  strcpy(retour, "j'ai mangé");
 	}
-	//phase rejeté, l'estomac se vide, un sentiment de faim se crée, on indique que la phase d'ingurgitation est intéromput
+	//si l'estomac est plein, phase de rejet, l'estomac se vide, un sentiment de faim se crée, on indique que la phase d'ingurgitation est intérompu
 	else{
-	  //	  printf("rejet\n");
+
 	  variable_etat_ajouter_valeur(humeur,-10);
 	  variable_etat_initialiser(nourriture_ingurgite, 0);
 	  variable_etat_ajouter_valeur(niv_faim, -1);
@@ -120,14 +120,3 @@ void manger_gout(char * chaine, int gout)
   else if(gout > -10)
     strcpy(chaine, ">-10");
 }
-
-
-
-
-
-
-
-
-
-
-

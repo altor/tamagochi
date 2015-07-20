@@ -1,4 +1,4 @@
-//declaration des fonction appelé par les commandes utilisé pour la communication serveur/client
+//déclaration des fonctions appelées par les commandes utilisées pour la communication client/serveur
 
 #ifndef COMMANDE_SERV_H
 #define COMMANDE_SERV_H
@@ -11,6 +11,5 @@ void etat(char arguments[12][MAX], int nb_arguments, void * retour, liste * list
 void etat_faim(char arguments[12][MAX], int nb_arguments, void * retour, liste * liste_arg);
 void etat_humeur(char arguments[12][MAX], int nb_arguments, void * retour, liste * liste_arg);
 void manger(char arguments[12][MAX], int nb_arguments, void * retour, liste * liste_arg);
-
 
 #endif

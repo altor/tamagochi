@@ -50,7 +50,7 @@ int main(void)
   
   listen(sockfd, 1);
   /*                                                    */
-  /*  CREATION DES OBJETS PARTAGÉ PAR LES DEUX THREADS  */
+  /*  CREATION DES OBJETS PARTAGÉS PAR LES DEUX THREADS  */
   /*                                                    */
 
   //CREATION DES VARIABLES ETAT//
@@ -83,8 +83,6 @@ int main(void)
   pthread_join(th_serveur, &ret);
   eteindre = 0;
   pthread_join(th_tamagochi, &ret);
-
-  
   return 0;
 }
 

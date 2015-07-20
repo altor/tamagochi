@@ -2,7 +2,7 @@
 #define SERV_H
 
 
-//fonction lancé par le premier thread. elle gére la communication avec le client et execute les commande envoyé par le client.
+//fonction lancée par le premier thread. elle gére la communication avec le client et execute les commandes envoyées par le client.
 void * thread_serveur(void * arg);
 
 #endif

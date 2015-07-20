@@ -1,5 +1,4 @@
-//fonction utilisé par le serveur et le client pour la communication
-
+//fonction utilisées par le serveur et le client pour la communication
 
 #ifndef UTILITAIRE_H
 #define UTILITAIRE_H

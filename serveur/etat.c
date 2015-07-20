@@ -7,7 +7,6 @@
 #include "etat.h"
 
 
-
 void etat_nourriture(char * nom, char * retour);
 void init_carac(char * carac, int nb);
 
@@ -51,7 +50,7 @@ void etat_poid(char arguments[12][MAX], int nb_arguments, void * retour, liste *
   init_carac(retour, poid);
 }
 
-void etat_poid_degection(char arguments[12][MAX], int nb_arguments, void * retour, liste * liste_arg)
+void etat_poid_dejection(char arguments[12][MAX], int nb_arguments, void * retour, liste * liste_arg)
 {
   init_carac(retour, poid_dejection);
 }

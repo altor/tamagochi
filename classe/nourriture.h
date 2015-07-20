@@ -1,5 +1,5 @@
-//declaration de la classe nourriture qui sert a stocker les aliments leur valeur nutritive et comment le tamagochi l'aime.
-//declaration de la liste de stockage de la nourriture et des fonction qui lui sont associé.
+//déclaration de la classe nourriture qui sert a stocker les aliments leur valeur nutritive et comment le tamagochi l'aime.
+//déclaration de la liste de stockage de la nourriture et des fonctions qui lui sont associées.
 
 #ifndef NOURRITURE_H
 #define NOURRITURE_H
@@ -22,4 +22,4 @@ void ajouter_nourriture(liste * debut, char * nom, int nutriment);
 nourriture * chercher_nourriture(liste  * debut, char * nom);
 
 
-#endif // definition
+#endif

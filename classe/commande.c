@@ -55,14 +55,14 @@ int lancer_commande(liste * debut, char * nom, char arg2[12][MAX], int arg3, voi
   Pfonction fonction = NULL;
 
 
-  //on verifie que la liste n'est pas vide
+  //on vérifie que la liste n'est pas vide
   courant = liste_obtenir_suivant(courant);
   if(courant == NULL)
     return 1;
-  //on parcour la liste jusqu'a trouvé le nom de la commande ou arrivé a la fin
+  //on parcours la liste jusqu'à trouver le nom de la commande ou arriver à la fin
   while((strcmp(commande_obtenir_nom(liste_obtenir_valeur(courant)), nom)) && (liste_obtenir_suivant(courant) != NULL))
     courant = liste_obtenir_suivant(courant);
-  //si on arrive a la fin de la liste, on verifie si le dernier chainon contient la commande donné.
+  //si on arrive à la fin de la liste, on vérifie si le dernier chaînon contient la commande donnée.
   if(liste_obtenir_suivant(courant) == NULL){
     if(strcmp(commande_obtenir_nom(liste_obtenir_valeur(courant)), nom)){
       retour = NULL;

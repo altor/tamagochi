@@ -14,34 +14,32 @@
 #include "../utilitaire.h"
 #define	MAXLINE 512
 
-int
-str_cli(fp, sockfd)
-register FILE	*fp;
-register int	sockfd;
+int str_cli( FILE * fp, int sockfd)
 {
-	int	n;
-	char	sendline[MAXLINE], recvline[MAXLINE + 1];
-	printf(">");
-	while (fgets(sendline, MAXLINE, fp) != NULL) {
-	  n = strlen(sendline);
-	  if (writen(sockfd, sendline, n) != n)
-	    err_dump("str_cli: writen error on socket");
-	  /* 
-	   * Now read a line from the socket and write it to
-	   * our standard output.
-	   */
+  int	n;
+  char	sendline[MAXLINE], recvline[MAXLINE + 1];
+  printf(">");
+  while (fgets(sendline, MAXLINE, fp) != NULL) {
+    n = strlen(sendline);
+    if (writen(sockfd, sendline, n) != n)
+      err_dump("str_cli: writen error on socket");
+    /* 
+     * Now read a line from the socket and write it to
+     * our standard output.
+     */
 	  
-	  n = readline(sockfd, recvline, MAXLINE);
-	  if (n < 0)
-	    err_dump("str_cli: readline error");
-	  if(!strcmp(recvline, "exit"))
-	     return 0;
-	  recvline[n-1] = 0;		/* null terminate */
-	  fputs(recvline, stdout);
-	  printf("\n>");
-	}
+    n = readline(sockfd, recvline, MAXLINE);
+    if (n < 0)
+      err_dump("str_cli: readline error");
+    if(!strcmp(recvline, "exit"))
+      return 0;
+    recvline[n-1] = 0;		/* null terminate */
+    fputs(recvline, stdout);
+    printf("\n>");
+  }
 	
-	if (ferror(fp))
-	  err_dump("str_cli: error reading file");
-	
+  if (ferror(fp))
+    err_dump("str_cli: error reading file");
+
+  return 0;
 }

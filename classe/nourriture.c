@@ -54,11 +54,11 @@ void ajouter_nourriture(liste * debut, char * nom, int nutriment)
 nourriture * chercher_nourriture(liste  * debut, char * nom)
 {
   liste * courant = liste_obtenir_suivant(debut);
-  //on parcour la liste jusqu'a trouver le nom recherché ou arrivé a la fin
+  //on parcourt la liste jusqu'à trouver le nom recherché ou arriver à la fin
   while(strcmp(nourriture_obtenir_nom(liste_obtenir_valeur(courant)), nom) && liste_obtenir_suivant(courant) != NULL){
   courant = liste_obtenir_suivant(courant);
   }
-  //si on est arrivé a la fin on vérifie que le dernier chainon contient l'aliment recherché
+  //si on est arrivé à la fin on vérifie que le dernier chainon contient l'aliment recherché
   if(liste_obtenir_suivant(courant) == NULL){
     if(!strcmp(nourriture_obtenir_nom(liste_obtenir_valeur(courant)), nom))
       return liste_obtenir_valeur(courant);

@@ -1,8 +1,8 @@
 CCFLAGS = -pthread -Wall -o
 
 
-OBJ_CLASSE = variable_etat.o commande.o nourriture.o liste.o fonctionalite.o
-OBJ_SERV = serveur-main.o serv.o tamagochi.o commande_serv.o etat.o fonctionalite_tamagochi.o
+OBJ_CLASSE = variable_etat.o commande.o nourriture.o liste.o fonctionnalite.o
+OBJ_SERV = serveur-main.o serv.o tamagochi.o commande_serv.o etat.o fonctionnalite_tamagochi.o
 OBJ_SERV_MAIN = $(OBJ_SERV) $(OBJ_CLASSE) utilitaire.o
 
 OBJ_CLI = client-main.o str-cli.o
@@ -57,8 +57,8 @@ commande.o : ./classe/commande.h ./classe/commande.c
 commande_serv.o : ./serveur/commande_serv.h ./serveur/commande_serv.c
 	gcc -Wall -o commande_serv.o -c ./serveur/commande_serv.c
 
-fonctionalite.o : ./classe/fonctionalite.h ./classe/liste.h ./classe/fonctionalite.c
-	gcc -Wall -o fonctionalite.o -c ./classe/fonctionalite.c
+fonctionnalite.o : ./classe/fonctionnalite.h ./classe/liste.h ./classe/fonctionnalite.c
+	gcc -Wall -o fonctionnalite.o -c ./classe/fonctionnalite.c
 
 liste.o: ./classe/liste.h ./classe/liste.c
 	gcc -Wall -o liste.o -c ./classe/liste.c
@@ -66,5 +66,5 @@ liste.o: ./classe/liste.h ./classe/liste.c
 etat.o: ./serveur/etat.h ./serveur/global.h ./classe/nourriture.h ./classe/variable_etat.h ./serveur/etat.c
 	gcc -Wall -o etat.o -c ./serveur/etat.c
 
-fonctionalite_tamagochi.o: ./serveur/fonctionalite_tamagochi.h ./serveur/fonctionalite_tamagochi.c
-	gcc -Wall -o fonctionalite_tamagochi.o -c ./serveur/fonctionalite_tamagochi.c
+fonctionnalite_tamagochi.o: ./serveur/fonctionnalite_tamagochi.h ./serveur/fonctionnalite_tamagochi.c
+	gcc -Wall -o fonctionnalite_tamagochi.o -c ./serveur/fonctionnalite_tamagochi.c

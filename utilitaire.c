@@ -1,7 +1,7 @@
 /*
  * Reproduced from Unix Network Programming
-		W.Richard Stevens
-		Prentice Hall Software Series 1990
+ W.Richard Stevens
+ Prentice Hall Software Series 1990
  * Read a line from a descriptor. Read the line one byte at a time,
  * looking for the newline. We store the newline in the buffer,
  * then follow it with a null (the same as fgets(3)).
@@ -44,8 +44,8 @@ int readline(int fd, char *  ptr, int maxlen)
 
 /*
  * Reproduced from Unix Network Programming
-		W.Richard Stevens
-		Prentice Hall Software Series 1990
+ W.Richard Stevens
+ Prentice Hall Software Series 1990
  * Write "n" bytes to a descriptor.
  * Use in place of write() when fd is a stream socket.
  */
@@ -53,22 +53,19 @@ int readline(int fd, char *  ptr, int maxlen)
 
 int writen(int fd, char * ptr, int nbytes)
 {
-  int     nleft, nread, nwritten,i;
+  int nleft, nwritten;
 
-  //printf("|%s||||",ptr);
 	
-        nleft = nbytes;
-	while (nleft > 0) {
-		nwritten = write(fd, ptr, nleft);
-		if (nwritten <= 0)
-			return(nwritten);		/* error */
+  nleft = nbytes;
+  while (nleft > 0) {
+    nwritten = write(fd, ptr, nleft);
+    if (nwritten <= 0)
+      return(nwritten);
+    nleft -= nwritten;
+    ptr += nwritten;
+  }
 
-		nleft -= nwritten;
-		ptr += nwritten;
-	}
-	//	printf("|%s|\n",ptr-nbytes);
-
-	return(nbytes - nleft);
+  return(nbytes - nleft);
 }
 
 
