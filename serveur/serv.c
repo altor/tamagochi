@@ -35,7 +35,7 @@ void * thread_serveur(void * arg)
   int retour = 1;
   struct sockaddr cli_addr;
   liste * debut_commande = NULL;
-    liste * arg_etat = NULL;
+  liste * arg_etat = NULL;
 
   //CREATION COMMANDES//
   //creation de la liste

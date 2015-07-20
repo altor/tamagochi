@@ -26,6 +26,7 @@ void * thread_tamagochi(void * arg)
   ajouter_fonctionalite(debut_fonctionalite, 1, gestion_prod);
   ajouter_fonctionalite(debut_fonctionalite, 1, gestion_faim);
   ajouter_fonctionalite(debut_fonctionalite, DURE_POID, gestion_poid);
+  ajouter_fonctionalite(debut_fonctionalite, 1, gestion_etat);
 
   nb_cycle = 0;
   temps2 = time(NULL);

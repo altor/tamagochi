@@ -11,11 +11,14 @@ void compteur_cycle(void)
   printf("%d\n",cycle);
 }
 
+//fonction experimental, non intégré pour le moment
 void gestion_prod(void)
 {
-  static int cycle = 0,ancien = 0, cycle_digestion = 0;
+  static int cycle = 0,
+    ancien = 0,
+    cycle_digestion = 0;
   static time_t t1, t2;
-int coulis;
+  int coulis;
   
 
   //si ingurgitation a commencé on commence a compter un nombre de cycle
@@ -67,10 +70,17 @@ int coulis;
   }
 }
 
+//fonction experimental, non intégré pour le moment
 void gestion_poid(void)
 {
   if(poid > (POID_DEPART / 4))
     poid -= 2.5;
+}
+
+void gestion_etat(void)
+{
+  if(variable_etat_obtenir_valeur(niv_faim) <= 0 || variable_etat_obtenir_valeur(humeur) <= 0)
+    alive = 0;
 }
 
 void gestion_faim(void)

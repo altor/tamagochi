@@ -6,7 +6,7 @@
 #define MIN_GOUT -10
 
 #define POID_DEPART 5
-#define CAPACITE_ESTOMAC 20
+#define CAPACITE_ESTOMAC 7
 #define CYCLE 1 //duré d'un cycle de mise à jour en seconde
 #define DURE_JOUR 24 //nombre de cycle en une journé
 #define DURE_PRODUCTION (DURE_JOUR / 4) //duré d'un cycle de production en cycle (ingurgistation, digestion , evacuation)

@@ -71,16 +71,14 @@ void manger(char arguments[12][MAX], int nb_arguments, void * retour, liste * li
 	  variable_etat_ajouter_valeur(humeur, nourriture_obtenir_gout(aliment));
 	  variable_etat_actualiser_temps(humeur);
 
-	  if(nutriment > 4){
-	    if(variable_etat_obtenir_valeur(niv_faim) < 5){
+	  if(nutriment >= 4 && variable_etat_obtenir_valeur(niv_faim) < 5){
 	      variable_etat_ajouter_valeur(niv_faim, 1);	  
 	      variable_etat_actualiser_temps(niv_faim);
 	    }
-	  }
 	  verrou_ingurgitation = 1;
 	  strcpy(retour, "j'ai mangé");
 	}
-	//phase rejt, l'estomac se vide, un sentiment de faim se crée, on indique que la phase d'ingurgitation est intéromput
+	//phase rejeté, l'estomac se vide, un sentiment de faim se crée, on indique que la phase d'ingurgitation est intéromput
 	else{
 	  //	  printf("rejet\n");
 	  variable_etat_ajouter_valeur(humeur,-10);
